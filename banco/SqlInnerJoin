@@ -1,0 +1,17 @@
+select
+T.N_idTurma as 'Turma',
+T.T_descTurma as 'Desc Turma',
+T.N_maxAlunos as 'Max Alunos',
+H.T_DescHorario as 'Horario',
+P.T_nomeProf as 'Professor',
+case
+    when T.T_status = 'A' then 'ATIVA'
+    when T.T_status = 'P' then 'PARALIZADA'
+    when T.T_status = 'C' then 'CANCELADA'
+end as 'status'
+from tb_turmas as T
+inner join
+tb_horarios as H on T.N_horarios = H.N_idHorario,
+tb_Professores as P on T.N_idProfessor = P.T_IdProfessor
+
+
